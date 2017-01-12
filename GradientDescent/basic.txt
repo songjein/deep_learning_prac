@@ -1,0 +1,59 @@
+Gradient Descent Method
+
+[ problem ] 
+
+input x  => function => output y
+
+; what if you want the output y = y_taget with respect to the input x?
+
+y가 아닌 y_taget이 되게 끔 유도하고 싶어
+
+! Need to define how wrong the function is.. (얼마나 틀렸는지)
+
+Function을 트레이닝 하기 위해 얼마나 틀렸는지 Error를 정의
+
+Error가 0이되면 y 와 y_target이 같아짐(목표 달성)
+
+
+///////////////////////////////////////////////////////////////////////////
+
+간단한 Linear Function
+
+y = a * x + b
+
+E = 1/2 * (y_taget - y) ^ 2
+
+왜 1/2를 곱하냐면 미분 후 깔끔해지게끔..
+
+우리가 원하는건 정해진 x에 대해 정해진 y가 나오는 것!
+즉 a 혹은 b가 변해야되
+
+2차 방정식이기 때문에 convex 모양
+a와 E와의 관계,
+b와 E의 관계,
+
+a값 b값을 바꿔서 각각 convex의 최저점을 찍게끔 해야해
+
+현재 a값에 대해 E를 미분
+dE/da 
+dE over da
+(편미분, partial derivative)
+
+a_updated = a - learning_rate * dE/da
+
+
+///////////////////////////////////////////////////////////////////////////
+
+minimize E = 1/2 (y_taget - y)^2
+E를 최소화 시키는게 목표
+그러면 주어진 입력에 대해 원하는 출력을 낼 수 있다
+
+최소화 시키기 위해선
+a_updated = a - learning_rate * dE/da
+b_updated = b - learning_rate * dE/db
+의 과정을 반복한다
+
+E값이 충분히 작아질 때 까지
+
+ex) gradient_descent.cpp
+
