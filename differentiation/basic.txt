@@ -1,0 +1,48 @@
+미분이란 것은
+값의 변화에 관한 것
+
+How much does f(x) change when we change x
+
+x가 변할 때, f가 얼마나 변하는가
+x의 변화에 대해서 f가 변하는 속도
+
+직선의 경우엔 기울기
+
+The rate change of f(x) with respect to x
+
+미분했을 때 그 값이 양수면 x가 증가할 때 f도 증가한다는 소리
+음수는 반대
+0이라면 x가 커지든 작아지든 상관없이 f는 변화가 없다는 소리
+
+
+컴퓨터는 무한소를 표현할 방법이 없음
+x의 변화량을 적당히 작은 값을 사용하는 수밖에
+근사값을 계산해 내는 수밖에 없어
+
+google : table of derivatives 미분표 
+
+https://en.wikipedia.org/wiki/Activation_function
+
+우리가 사용하는 activation function은 연산의 효율을 위해서 보통 간단하다
+
+
+ex) 미분표를 참고하여 sigmoid 함수의 미분을 구현한다
+
+float getSigmoid(const float& x){
+	return 1.0f / (1.0f + exp(-x));
+}
+
+float getGradSigmoid(const float& x){
+	const float f = getSigmoid(x);
+
+	return f * (1.0 - f);
+}
+
+
+float getReLU(const float& x){
+	return x >= 0.0f ? x : 0.0f;
+}
+
+float getGradReLU(const float& x){
+	return x >= 0.0f ? 1.0f : 0.0f;
+}

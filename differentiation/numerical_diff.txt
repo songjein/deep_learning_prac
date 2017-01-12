@@ -1,0 +1,92 @@
+함수 f의 미분을 구하는 방법에는 두가지가있음
+
+Analytical differentiation
+해석 미분
+; 수학자가 유도해 놓은 공식 및 표를 사용하여 
+
+Numerical differentiation
+수치 미분
+; 함수 f가 '어떻게 생겼는지 몰라도 미분이 가능'해
+
+df(x)/dx를 f(x + dx) - f(x) / dx
+dx가 작으면 작을 수록 좋아,
+컴퓨터는 '무한소' 개념을 표현 못해
+여기서 dx를 그냥 적당히 작은 수를 이용해서
+'유한하지만 작은숫자'를 이용해서 적당히 근사(도함수를)
+
+그냥 값을 넣어버려~!
+
+
+float getF(const float& x){
+	const float a = 0.5;
+	const float b = 0.1;
+
+	return a * x + b;
+}
+
+** 기준점 x가 있고 x + dx의 값과 차이를 이용해 미분값을 구해
+
+x의 위치에서의 미분값을 구할 때 dx를 대입해서
+f(x + dx) - f(x)를 dx로 나눔으로써 구해
+
+const float x = 1.0;
+const flaot dx = 0.1; // 작으면 좋지만 너무작으면 불안정해
+const float df = getF(x + dx) - getF(x);
+const df_over_dx = df/dx;
+
+df(1)/dx = (0.65 - 0.6) / 0.1 = 0.5
+
+////////////////////////////////////////////////////////////////////////
+그럼 이렇게 미분한걸 어디에 쓸건데?
+
+what if we need to obtain f(x + dx) from f(X) and df(x)/dx
+without computing f(x + dx) directly?
+
+f(1) 값을 알고있고 df(1)/dx 값을 알고있다면
+f(1) 주변 값(근처 값)을 함수를 직접 계산하지 않고도 추측할 수 있음
+ex) f(1 + 0.2)
+
+
+approximatio(추정) 하는 방법은 간단해
+df(x)/dx ~= (f(x + delta_x) - f(x)) / delta_x
+이 식을 f(x + dx)에 대해서 정리만 하면됨
+
+f(x + delta_x) ~= f(x) + df(x)/dx * delta_x
+
+1 지점에서 함수값과, 도함수의 값을 안다면
+거기서 조금 더 나아간 지점의 값을 추정할수가 있어
+f(1 + 0.2) ~= f(1) + df(1)/dx * 0.2
+						= 0.6 + 0.5 * 0.2 = 0.7
+
+예제 : approximation.cpp
+
+////////////////////////////////////////////////////////////////////////
+여기가 더 중요
+
+원하는 아웃풋을 얻기 위해서는 어떤 인풋을 넣어야 하는가
+(얼마나 움직여야 하는가)
+
+마찬가지로
+df(x)/dx ~= (f(x + delta_x) - f(x)) / delta_x
+
+이 식에서
+dx_target = delta_x
+f_target = f(x + delta_x)
+라고 하고
+
+좌변에 dx_target을 남기고 정리하면
+dx_target ~= (f_target - f(x)) / (df(x)/dx)
+
+이 식이 나옴
+움직여야 하는 값, delta_x를 얼마나 움직여야 우리가 원하는 f_target에 도달할 수 있는지 추측
+
+예제 : approximation2.cpp
+
+////////////////////////////////////////////////////////////////////////
+
+해석적 접근이 더 효율적일 수 있음
+아에 도함수를 하드코딩으로 집어 넣으면 되니까
+
+수치 미분에 의한 계산량을 줄일 수 있다는 소리
+
+함수가 매우 복잡해서 해석 접근이 안될 땐 어쩔 수 없이 수치적 접근을 해야하지만..
