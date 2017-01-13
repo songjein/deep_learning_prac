@@ -23,7 +23,7 @@ int main(){
 
 	const float alpha = 0.01f;
 
-	for (int i = 0 ; i < 100; i++){
+	for (int i = 0 ; i < 1000; i++){
 		// y = ax + b
 		// E = 1/2 * (y_taget - y) ^ 2
 		// E : squared error
