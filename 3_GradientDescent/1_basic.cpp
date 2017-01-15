@@ -19,7 +19,7 @@ int main(){
 	MyFunction mf;
 
 	const float y_t0 = 1.0f; // target
-	const float x_0 = 0.0f;
+	const float x_0 = 0.0f;	// 샘플 데이터가 하나야
 
 	const float alpha = 0.01f;
 
@@ -33,7 +33,7 @@ int main(){
 		std::cout << "a : " << mf.a_ << " b : " << mf.b_ << std::endl;
 		std::cout << "Squared Error = " << 0.5 * error * error << std::endl;
 
-		// 편미분 하면 이렇게 정리 됨
+		// Squared Error 'E'에 대해 편미분 하면 이렇게 정리 됨
 		const float Ea = error * -x_0;	// dE/da ; a를 바꿨을 때 E를 얼마나 바꿀 수 있는가
 		const float Eb = error * -1;		// 마찬가지
 

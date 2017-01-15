@@ -1,0 +1,87 @@
+https://www.youtube.com/watch?v=g3nhLjYRT5I&index=12&list=PLNfg4W25Tapy5hIBmFZgT5coii1HUX6BD
+
+chain rule 을 이해하면
+복잡합 뉴럴네트워크의 back propagation을 쉽게 이해할 수 있다
+
+미분의 연쇄법칙
+
+what if our system is a combination of sub-functions??
+
+/////////////////////////////////////////////////////////////////////////
+
+편미분이란?
+
+f(x) = ax + b
+
+<Differentiation 미분>
+<Differentiation 미분>
+
+df(x)/dx = a
+, where x is the only variable and a and b are constraints
+
+x만 변할 경우에, 굳이 a,b에 대해서 미분을 할수가 없어(굳이 하면 0이되)
+x에 대해서만 미분해(x가 변할 때 함수 f의 값이 얼마나 변하겠는가)
+
+<Partial Differentiation 편미분>
+<Partial Differentiation 편미분>
+
+where x, a, and b are variables (변수가 여러개 일 때)
+
+/////////////////////////////////////////////////////////////////////////
+
+Chain Rule
+; The formula f(x) = f(g(x)) means that f is a function of g and g is a function of x
+즉, x가 변하면 g가 변하고 g가 변하면 f가 변한다
+
+우리는 x가 변했을 때 f가 어떻게 변하는지 알고 싶어
+
+We can calculate df/dx indirectly as follow:
+df/dx = df(g)/dg * dg(x)/dx
+이런식으로 각각 미분한 이후에 숫자 두개를 곱해주면 되는겨
+
+즉, g가 변할 때 f가 어떻게 변하는지 알고, x가 변할 때 g가 어떻게 변하는지를 곱하면 됌
+
+y = f(g(x))
+f(x) = a_f * x + b_f , g(x) = a_g * x + b_g
+여기서 
+dy/dx = a_f * a_g
+가 되겠지
+
+/////////////////////////////////////////////////////////////////////////
+
+E = 1/2 (y_taget - y) ^ 2
+
+y = f(g(x))
+
+f(x) = a_f * x + b_f , g(x) = a_g * x + b_g
+
+updated_a_f = a_f - lr * dE/da_f
+updated_b_f = b_f - lr * dE/db_f
+
+updated_a_g = a_g - lr * dE/da_g
+updated_b_g = b_g - lr * dE/db_g
+
+E를 가능한 작아지게 최적화를 시키려면
+기존에 배웠던 GD알고리즘을 이용해서
+이렇게 4개의 변수를 업데이트 시켜줘야됌
+
+E를 각 4가지 변수에 대해서 미분하고 각각 값을 이용해서 업데이트
+
+여기서
+y = f(g(x))
+그대로 대입해서 전개를 해도됌
+
+이전 예제에서는 그렇게 해서 미분도 해봤고.
+
+근데 what if y is much more complicated??
+레이어가 늘어나면서 y가 복잡해지면??
+
+이럴 땐 매번 전개해서 풀기가 힘들어
+
+/////////////////////////////////////////////////////////////////////////
+
+그렇다면 chain rule을 써서 미분을 하면
+
+우리는 a_f, b_f, a_g, b_g 각각에 대해서 E를 미분해야
+E를 최소화하기 위한 업데이트할 수 있어
+
